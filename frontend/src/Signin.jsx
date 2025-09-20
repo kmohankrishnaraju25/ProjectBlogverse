@@ -1,6 +1,20 @@
+import NavBar from "./NavBar"
+import { KeyRound } from 'lucide-react';
+import { Eye } from 'lucide-react';
+import { EyeOff } from 'lucide-react';
+import { useState } from "react";
 const Signin = () => {
+    const [showPassword, setshowpassword] = useState(false)
+        const [showconfirmpassword, setconfirmpassword] = useState(false)
+        const handlepassword = () => {
+            setshowpassword((password) => !password)
+        }
+        const handleconfirmpassword = () => {
+            setconfirmpassword((password) => !password)
+        }
     return (
-        <div className="flex flex-col items-center h-screen justify-center gap-7 bg-blue-50">
+        <div className="flex flex-col items-center h-screen  gap-7 bg-blue-50f">
+             <NavBar/>
             <div className="flex flex-col border-1 rounded-2xl p-10 w-1/4 shadow-sm hover:shadow-gray-600 bg-white">
                 <h1 className="text-center font-bold text-2xl ">Sign In</h1>
                 <p className=" text-center text-gray-500">Access your account</p>
@@ -15,6 +29,7 @@ const Signin = () => {
                         <p className=" font-semibold text-sm text-gray-600 pr-40 py-3 ">
                             Password
                         </p>
+                         <KeyRound className="absolute top-2 left-2 text-gray-400" />
                         <input type="text" placeholder="Sample123" className="rounded-2xl border-1 shadow-sm hover:shadow-gray-400 border-gray-600 w-full px-3 py-2"></input>
                     </div>
                     <div className="flex justify-between items-center w-full">
@@ -25,7 +40,7 @@ const Signin = () => {
                             </p>
                         </div>
                         <div>
-                            <button className=" font-semibold text-sm py-3 text-blue-600 hover:underline ">Forgot Password?</button>
+                            <button className=" font-semibold text-sm py-3 cursor-pointer text-blue-600 hover:underline ">Forgot Password?</button>
                         </div>
 
                     </div>
