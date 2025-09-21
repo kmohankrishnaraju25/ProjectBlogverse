@@ -58,7 +58,7 @@ const SignUp = () => {
             NewErrors.Email = "Please enter your Email"
         }
         if (!FormData.Password) {
-            NewErrors.password = "Please enter your password"
+            NewErrors.Password = "Please enter your password"
         }
         if (!FormData.confirm_password) {
             NewErrors.confirm_password = "Please enter your confirm password"
@@ -110,7 +110,7 @@ const SignUp = () => {
             <p className="text-gray-500 text-xl text-center font-semibold ">
                 Create your account and start your Journey
             </p>
-            <form onSubmit={handleSubmit} className="flex flex-col border-1 border-black w-1/3 py-7 justify-center items-center gap-5 rounded-2xl shadow-lg shadow-gray-300 hover:shadow-black ">
+            <form onSubmit={handleSubmit} className="flex flex-col border-1 border-black w-[80%] md:w-1/3 py-7 justify-center items-center gap-5 rounded-2xl transition-transform duration-300 hover:scale-102 ">
                 <div className="w-[90%] flex flex-col gap-2">
                     <p className=" font-semibold text-md text-gray-700">Full_Name</p>
                     <div className="relative">
@@ -160,7 +160,7 @@ const SignUp = () => {
                 {error && <p className="text-red-500 ">{error}</p>}
                 {success && <p className="text-green-500">{success}</p>}
                 <button type="submit" className="w-[90%] bg-purple-500 text-white px-3 py-2 rounded-2xl font-semibold cursor-pointer flex gap-5"> <CircleUser />Create Account</button>
-                <p className=" text-gray-700 font-semibold">Already have an account?<Link to="/signin" className="text-purple-500 cursor-pointer  ">Signin</Link></p>
+                <p className=" text-gray-700 font-semibold">Already have an account?<Link to="/signin" className="text-purple-500 cursor-pointer hover:underline  ">Signin</Link></p>
                 <button className="w-[90%]  text-gray-700  font-semibold rounded-2xl hover:bg-gray-200 cursor-pointer py-2 px-3 ">Back to home</button>
             </form>
 

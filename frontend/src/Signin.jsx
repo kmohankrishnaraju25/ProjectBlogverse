@@ -1,64 +1,38 @@
-import NavBar from "./NavBar"
-import { KeyRound } from 'lucide-react';
-import { Eye } from 'lucide-react';
-import { EyeOff } from 'lucide-react';
-import { useState } from "react";
-const Signin = () => {
-    const [showPassword, setshowpassword] = useState(false)
-        const [showconfirmpassword, setconfirmpassword] = useState(false)
-        const handlepassword = () => {
-            setshowpassword((password) => !password)
-        }
-        const handleconfirmpassword = () => {
-            setconfirmpassword((password) => !password)
-        }
+import React from 'react';
+import NavBar from './NavBar';
+import { Link } from "react-router-dom"
+const SignUp = () => {
     return (
-        <div className="flex flex-col items-center h-screen  gap-7 bg-blue-50f">
-             <NavBar/>
-            <div className="flex flex-col border-1 rounded-2xl p-10 w-1/4 shadow-sm hover:shadow-gray-600 bg-white">
-                <h1 className="text-center font-bold text-2xl ">Sign In</h1>
-                <p className=" text-center text-gray-500">Access your account</p>
-                <form className="flex flex-col gap-5">
-                    <div>
-                        <p className=" font-semibold text-sm text-gray-600 pr-10 py-3">
-                            Email Address
-                        </p>
-                        <input type="text" placeholder="Sample@gmail.com" className="rounded-2xl shadow-sm hover:shadow-gray-400 border-1 border-gray-600 w-full px-7 py-2"></input>
+        <div className='flex flex-col min-h-screen items-center 2'>
+            <NavBar />
+            <form className=" flex flex-col mt-20 border-1 border-gray-400 w-[90%] md:w-1/3 items-center gap-5  mb-7 rounded-2xl ">
+                <div className=" flex flex-col justify-center items-center gap-3 mt-8">
+                    <h1 className="text-4xl font-bold ">Sign In</h1>
+                    <p className="">Access your account</p>
+                </div>
+                <div className="w-[90%] flex flex-col gp-2">
+                    <p className="font-semibold py-1 ">Email address</p>
+                    <input type="email" placeholder='enter your email' className="border-1  border-gray-700 w-full py-3 px-3 rounded-xl focus:outline-none " />
+                </div>
+                <div className="w-[90%] flex flex-col gp-2">
+                    <p className="font-semibold py-1 ">Password</p>
+                    <input type="password" placeholder='enter your password' className="border-1 text-gray-600 border-gray-700 w-full py-3 px-3 rounded-xl focus:outline-none " />
+                </div>
+                <div className="flex justify-center items-center w-[90%]  ">
+                    <div className="flex gap-2 justify-items-start w-[70%] px-3 py-1 items-center ">
+                        <input type="checkbox" className="h-5 w-5 " />
+                        <p className="font-semibold">remember me</p>
                     </div>
-                    <div>
-                        <p className=" font-semibold text-sm text-gray-600 pr-40 py-3 ">
-                            Password
-                        </p>
-                         <KeyRound className="absolute top-2 left-2 text-gray-400" />
-                        <input type="text" placeholder="Sample123" className="rounded-2xl border-1 shadow-sm hover:shadow-gray-400 border-gray-600 w-full px-3 py-2"></input>
-                    </div>
-                    <div className="flex justify-between items-center w-full">
-                        <div className="flex gap-3 items-center">
-                            <input type="checkbox" name="" id="" className="h-5 w-5" />
-                            <p className="cursor-pointer">
-                                Remember me
-                            </p>
-                        </div>
-                        <div>
-                            <button className=" font-semibold text-sm py-3 cursor-pointer text-blue-600 hover:underline ">Forgot Password?</button>
-                        </div>
+                    <button className="text-gray-700 font-semibold cursor-pointer ">forgot password?</button>
+                </div>
+                <button className="w-[90%] py-3 bg-blue-800 text-white rounded-xl font-semibold cursor-pointer">Sign In</button>
+                <div className="border-[0.5px] border-gray-400 w-[90%] mt-1"></div>
+                <p className="text-gray-700 font-semibold mb-8 ">Don't have an Account? <Link to="/SignUp" className="text-blue-500 hover:underline">create one here</Link></p>
 
-                    </div>
-                    <div className="flex justify-center items-center border-1 hover:scale-x-110 transition-transform shadow-sm hover:shadow-gray-400 hover:bg-blue-700 bg-blue-600 text-white rounded-2xl px-3 py-4 ">
-                        <p>Sign In</p>
-                    </div>
-                    <div className="flex justify-center pl-10 w-[90%]" >
-                        <p className=" font-semibold text-md text-gray-600 " >
-                            Don't have an account? 
-                        </p>
-                        <p className="text-blue-600 cursor-pointer hover:underline">Create one here</p>
-                    </div>
 
-                </form>
-            </div>
-
+            </form>
         </div>
-
     )
+
 }
-export default Signin
+export default SignUp
