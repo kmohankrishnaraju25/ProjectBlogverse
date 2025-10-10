@@ -25,6 +25,7 @@ const SignUp = () => {
         confirm_password: ""
 
     })
+    const [isLoading, setIsLoading] = useState(false)
     const [showPassword, setshowpassword] = useState(false)
     const [showconfirmpassword, setconfirmpassword] = useState(false)
     const handlepassword = () => {
@@ -44,10 +45,12 @@ const SignUp = () => {
         }))
 
     }
+    const [isModalOpen, setIsmodalOpen] = useState(false)
     const [success, SetSuccess] = useState('')
     const [error, SetError] = useState('')
     const handleSubmit = (event) => {
         event.preventDefault()
+        setIsLoading(true)
         let NewErrors = {}
 
 
@@ -67,35 +70,24 @@ const SignUp = () => {
         }
         if (Object.keys(NewErrors).length > 0) {
             SetErrors(NewErrors)
+            setIsLoading(false)
         } else {
-            SetSuccess("Your account is successfully created")
-            SetFormdata(
-                {
-                    FullName: "",
-                    Email: "",
-                    Password: "",
-                    confirm_password: ""
+            setTimeout(() => {
+                SetSuccess("Your account is successfully created")
+                SetFormdata(
+                    {
+                        FullName: "",
+                        Email: "",
+                        Password: "",
+                        confirm_password: ""
 
-                })
+                    })
+                setIsmodalOpen(true)
+                setIsLoading(false)
+            },3000)
+
         }
-        // if (!FormData.FullName || !FormData.Email || !FormData.confirm_password || !FormData.Password) {
-        //     SetError("Please fill all the fields")
-        // } else if (FormData.Password !== FormData.confirm_password) {
-        //     SetError("Password does not match")
-        // }
-        // else {
-        //     SetSuccess("Your account is successfully created")
-        //     SetError("")
-        //     SetFormdata(
-        //         {
-        //             FullName: "",
-        //             Email: "",
-        //             Password: "",
-        //             confirm_password: ""
 
-        //         }
-        //     )
-        // }
     }
 
 
@@ -136,7 +128,7 @@ const SignUp = () => {
                         <input value={FormData.Password} onChange={handlechange} name="Password" type={showPassword ? "text" : "password"} placeholder="Enter your Password:" className="  border-1 border-gray-700 w-full py-2 px-9 rounded-2xl focus:outline-none  "></input>
                         <KeyRound className="absolute top-2 left-2 text-gray-400" />
                         <p onClick={handlepassword}>{showPassword ? <EyeOff className="absolute top-2 right-5 text-gray-400" /> : <Eye className="absolute top-2 right-5 text-gray-400" />}</p>
-                        
+
                     </div>
                     {errors.Password && <p className="text-red-500">{errors.Password}</p>}
 
@@ -159,10 +151,22 @@ const SignUp = () => {
                 </div>
                 {error && <p className="text-red-500 ">{error}</p>}
                 {success && <p className="text-green-500">{success}</p>}
-                <button type="submit" className="w-[90%] bg-purple-500 text-white px-3 py-2 rounded-2xl font-semibold cursor-pointer flex gap-5"> <CircleUser />Create Account</button>
+                <button type="submit" className="w-[90%] bg-purple-500 text-white px-3 py-2 rounded-2xl font-semibold cursor-pointer flex gap-5"> <CircleUser /><p>{isLoading ? "creating....":"create account"}</p></button>
                 <p className=" text-gray-700 font-semibold">Already have an account?<Link to="/signin" className="text-purple-500 cursor-pointer hover:underline  ">Signin</Link></p>
                 <button className="w-[90%]  text-gray-700  font-semibold rounded-2xl hover:bg-gray-200 cursor-pointer py-2 px-3 ">Back to home</button>
             </form>
+            {isModalOpen &&
+                <div className="fixed border-red-400 h-dvh w-dvw border-2 flex justify-center items-center ">
+                    <div className=" absolute h-dvh w-dvw bg-black opacity-50"></div>
+                    <div className="border-1 border-gray-500 px-5 py-5 bg-white rounded-2xl z-10">
+                        <p className="font-bold">Hello!! Mohan krishna </p>
+                        <p>Your account is created successfully ✅Thank you </p>
+                        <div className="flex gap-50">
+                            <Link to="/Signin" className="px-4 py-2 bg-blue-400 rounded-2xl">login</Link>
+                            <button onClick={() => setIsmodalOpen(false)} className="px-4 py-2 rounded-2xl bg-gray-400">close</button>
+                        </div>
+                    </div>
+                </div>}
 
 
         </div>
